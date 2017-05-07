@@ -58,7 +58,6 @@ const authScript = () => {
               sessionStorage.setItem('displayName', response.display_name);
               sessionStorage.setItem('displayPic', response.images[0].url);
               sessionStorage.setItem('accessToken', access_token);
-              debugger;
               // userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
               $('#login').hide();
@@ -73,7 +72,11 @@ const authScript = () => {
       document.getElementById('login-button').addEventListener('click', function() {
 
         var client_id = 'eb7109a8a1294315ae5b96f61a3c0be2'; // Your client id
-        var redirect_uri = 'http://localhost:8888'; // Your redirect uri
+        var redirect_uri = 'http://localhost:8080'; // Your redirect uri
+
+        if (window.location.origin === 'https://spotify-quiz-app.herokuapp.com/'){
+          redirect_uri = 'https://spotify-quiz-app.herokuapp.com/';
+        }
 
         var state = generateRandomString(16);
 

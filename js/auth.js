@@ -72,10 +72,10 @@ const authScript = () => {
       document.getElementById('login-button').addEventListener('click', function() {
 
         var client_id = 'eb7109a8a1294315ae5b96f61a3c0be2'; // Your client id
-        var redirect_uri = 'http://localhost:8080'; // Your redirect uri
+        var redirect_uri = 'https://spotify-quiz-app.herokuapp.com/'; // Your redirect uri
 
-        if (window.location.origin === 'https://spotify-quiz-app.herokuapp.com/'){
-          redirect_uri = 'https://spotify-quiz-app.herokuapp.com/';
+        if (window.location.origin === 'http://localhost:8080'){
+          redirect_uri = 'http://localhost:8080';
         }
 
         var state = generateRandomString(16);

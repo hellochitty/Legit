@@ -54,9 +54,10 @@ const authScript = () => {
               'Authorization': 'Bearer ' + access_token
             },
             success: function(response) {
-              window.displayName = response.display_name;
-              window.displayPic = response.images[0].url;
-              window.accessToken = access_token;
+              sessionStorage.setItem('displayName', response.display_name);
+              sessionStorage.setItem('displayPic', response.images[0].url);
+              sessionStorage.setItem('accessToken', access_token);
+              debugger;
               // userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
               $('#login').hide();

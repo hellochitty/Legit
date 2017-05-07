@@ -1,16 +1,23 @@
 import * as Util from './util.js';
+
 const handleStartClick = () => {
-  debugger;
-  return $.ajax({
+  $('#start-button').remove();
+  if (sessionStorage.accessToken){
+    $('.body').append('<div>hi</div>');
+    return $.ajax({
       url: 'https://api.spotify.com/v1/me/playlists',
       headers: {
-        'Authorization': 'Bearer ' + window.accessToken
-      },
-      success: function(response) {
-        debugger;
+        'Authorization': 'Bearer ' + sessionStorage.accessToken
       }
-  });
+    }).then((response)=>{
+      sessionStorage.setItem('userPlaylists', JSON.stringify(Util.playlistMapping(response)));
+      });
+  }else{
+    $('.body').append('<div>hi - no token</div>');
+  }
 };
+
+
 $(() => {
 let backgrounds = [
     'linear-gradient(0deg, #191414, #F0401C)',
@@ -26,6 +33,6 @@ let backgrounds = [
    $('#loggedin').show();
  });
 
- $('#start-button').click(handleStartClick).then(()=>{debugger;});
+ $('#start-button').click(handleStartClick);
 
 });

@@ -74,18 +74,25 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_js__ = __webpack_require__(1);
 
+
 const handleStartClick = () => {
-  debugger;
-  return $.ajax({
+  $('#start-button').remove();
+  if (sessionStorage.accessToken){
+    $('.body').append('<div>hi</div>');
+    return $.ajax({
       url: 'https://api.spotify.com/v1/me/playlists',
       headers: {
-        'Authorization': 'Bearer ' + window.accessToken
-      },
-      success: function(response) {
-        debugger;
+        'Authorization': 'Bearer ' + sessionStorage.accessToken
       }
-  });
+    }).then((response)=>{
+      sessionStorage.setItem('userPlaylists', JSON.stringify(__WEBPACK_IMPORTED_MODULE_0__util_js__["a" /* playlistMapping */](response)));
+      });
+  }else{
+    $('.body').append('<div>hi - no token</div>');
+  }
 };
+
+
 $(() => {
 let backgrounds = [
     'linear-gradient(0deg, #191414, #F0401C)',
@@ -93,7 +100,7 @@ let backgrounds = [
     'linear-gradient(0deg, #191414, #619406)',
     'linear-gradient(0deg, #191414, #F01F59)'
   ];
-  __WEBPACK_IMPORTED_MODULE_0__util_js__["a" /* shuffle */](backgrounds);
+  __WEBPACK_IMPORTED_MODULE_0__util_js__["b" /* shuffle */](backgrounds);
   $('body').css('background', backgrounds[0]);
 
  $('#guest-login-button').click(() => {
@@ -101,7 +108,7 @@ let backgrounds = [
    $('#loggedin').show();
  });
 
- $('#start-button').click(handleStartClick).then(()=>{debugger;});
+ $('#start-button').click(handleStartClick);
 
 });
 
@@ -134,7 +141,7 @@ const shuffle = (array) => {
   }
   return array;
 };
-/* harmony export (immutable) */ __webpack_exports__["a"] = shuffle;
+/* harmony export (immutable) */ __webpack_exports__["b"] = shuffle;
 
 
 
@@ -161,6 +168,26 @@ const durationMapping = lvl => {
   }
 };
 /* unused harmony export durationMapping */
+
+
+const playlistMapping = response => {
+  let result = [];
+  response.items.forEach((el) => {
+    if(el.tracks.total > 20){
+      result.push(
+        {
+          id: el.id,
+          image: el.images[0].url,
+          name: el.name,
+          url: el.tracks.href
+        }
+      );
+    }
+  });
+  debugger;
+  return result;
+};
+/* harmony export (immutable) */ __webpack_exports__["a"] = playlistMapping;
 
 
 

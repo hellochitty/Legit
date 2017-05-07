@@ -43,3 +43,21 @@ export const durationMapping = lvl => {
       return 0.25;
   }
 };
+
+export const playlistMapping = response => {
+  let result = [];
+  response.items.forEach((el) => {
+    if(el.tracks.total > 20){
+      result.push(
+        {
+          id: el.id,
+          image: el.images[0].url,
+          name: el.name,
+          url: el.tracks.href
+        }
+      );
+    }
+  });
+  debugger;
+  return result;
+};

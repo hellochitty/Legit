@@ -1,12 +1,4 @@
 
-var holder = [];
-// > newarr.forEach((e) => {
-// ... if (e.track.preview_url){
-// ..... holder.push({url:e.track.preview_url, name: e.track.name})
-// ..... }
-// ... }
-// ... )
-
 
 export const shuffle = (array) => {
   let i = 0;
@@ -24,6 +16,10 @@ export const shuffle = (array) => {
 
 
 export const divMapper = (className, array) => {
+  return array.map((el) => `<div class=${"'"}${className}${"'"}>${el}</div>`).join("");
+};
+
+export const playlistMapper = (className, array) => {
   return array.map((el) => `<div class=${"'"}${className}${"'"}>${el}</div>`).join("");
 };
 
@@ -58,6 +54,5 @@ export const playlistMapping = response => {
       );
     }
   });
-  debugger;
   return result;
 };

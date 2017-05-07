@@ -13,6 +13,7 @@ body, h1, h2, h3, h4, h5, button{
   font-family: 'Monstserrat', sans-serif;
 }
 
+
 /*main parts*/
 html{
   height: 100%
@@ -36,4 +37,9 @@ h1{
 h4{
   font-weight:normal;
   color: rgba(0, 0, 0, 0.5);
+}
+
+/*important*/
+.hidden{
+  display: none;
 }

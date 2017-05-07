@@ -74,24 +74,6 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_js__ = __webpack_require__(1);
 
-const handleStartClick = () => {
-  $('#start-button').remove();
-  if (sessionStorage.accessToken){
-    $('.body').append('<div>hi</div>');
-    return $.ajax({
-      url: 'https://api.spotify.com/v1/me/playlists',
-      headers: {
-        'Authorization': 'Bearer ' + sessionStorage.accessToken
-      }
-    }).then((response)=>{
-      sessionStorage.setItem('userPlaylists', JSON.stringify(__WEBPACK_IMPORTED_MODULE_0__util_js__["a" /* playlistMapping */](response)));
-      });
-  }else{
-    $('.body').append('<div>hi - no token</div>');
-  }
-};
-
-
 $(() => {
 let backgrounds = [
     'linear-gradient(0deg, #191414, #F0401C)',
@@ -99,7 +81,7 @@ let backgrounds = [
     'linear-gradient(0deg, #191414, #619406)',
     'linear-gradient(0deg, #191414, #F01F59)'
   ];
-  __WEBPACK_IMPORTED_MODULE_0__util_js__["b" /* shuffle */](backgrounds);
+  __WEBPACK_IMPORTED_MODULE_0__util_js__["a" /* shuffle */](backgrounds);
   $('body').css('background', backgrounds[0]);
 
  $('#guest-login-button').click(() => {
@@ -111,20 +93,65 @@ let backgrounds = [
 
 });
 
+let userPlaylists;
+let duration = 0;
+let level;
+
+const handleStartClick = () => {
+  $('#start-button').remove();
+  //get userPlaylists if user signed in
+  if (sessionStorage.accessToken){
+    console.log('non-guest');
+    $.ajax({
+      url: 'https://api.spotify.com/v1/me/playlists',
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.accessToken
+      }
+    }).then((response)=>{
+      userPlaylists = __WEBPACK_IMPORTED_MODULE_0__util_js__["b" /* playlistMapping */](response);
+      console.log(userPlaylists);
+      // sessionStorage.setItem('userPlaylists', JSON.stringify(Util.playlistMapping(response)));
+    });
+  }
+
+  console.log('help');
+  $('.body').append(addDifficultySettings());
+  $('.settings').show('slow');
+  $(".difficulty").click(handleDifficultyClick);
+};
+
+
+const addDifficultySettings = () => {
+  return (
+    `<div class="settings hidden">
+      <h3>difficulty</h3>
+      <div class="settings-difficulty">
+        ${__WEBPACK_IMPORTED_MODULE_0__util_js__["c" /* divMapper */]("difficulty button", ["Pedestrian", "Mediocre", "Tough", "Insane", "Masochistic" ])}
+      </div>
+    </div>`);
+};
+
+const addPlaylistSettings = () => {
+  if (userPlaylists){
+    //
+  }
+};
+
+//add difficulty click handler
+const handleDifficultyClick = (e) => {
+  level = e.currentTarget.textContent;
+  console.log(level);
+  duration = __WEBPACK_IMPORTED_MODULE_0__util_js__["d" /* durationMapping */](level);
+  console.log(duration);
+  $(e.currentTarget).parent().parent().remove();
+};
+
 
 /***/ }),
 /* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-var holder = [];
-// > newarr.forEach((e) => {
-// ... if (e.track.preview_url){
-// ..... holder.push({url:e.track.preview_url, name: e.track.name})
-// ..... }
-// ... }
-// ... )
 
 
 const shuffle = (array) => {
@@ -140,14 +167,20 @@ const shuffle = (array) => {
   }
   return array;
 };
-/* harmony export (immutable) */ __webpack_exports__["b"] = shuffle;
+/* harmony export (immutable) */ __webpack_exports__["a"] = shuffle;
 
 
 
 const divMapper = (className, array) => {
   return array.map((el) => `<div class=${"'"}${className}${"'"}>${el}</div>`).join("");
 };
-/* unused harmony export divMapper */
+/* harmony export (immutable) */ __webpack_exports__["c"] = divMapper;
+
+
+const playlistMapper = (className, array) => {
+  return array.map((el) => `<div class=${"'"}${className}${"'"}>${el}</div>`).join("");
+};
+/* unused harmony export playlistMapper */
 
 
 
@@ -166,7 +199,7 @@ const durationMapping = lvl => {
       return 0.25;
   }
 };
-/* unused harmony export durationMapping */
+/* harmony export (immutable) */ __webpack_exports__["d"] = durationMapping;
 
 
 const playlistMapping = response => {
@@ -183,10 +216,9 @@ const playlistMapping = response => {
       );
     }
   });
-  debugger;
   return result;
 };
-/* harmony export (immutable) */ __webpack_exports__["a"] = playlistMapping;
+/* harmony export (immutable) */ __webpack_exports__["b"] = playlistMapping;
 
 
 

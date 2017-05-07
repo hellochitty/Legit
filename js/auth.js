@@ -54,7 +54,6 @@ const authScript = () => {
               'Authorization': 'Bearer ' + access_token
             },
             success: function(response) {
-              debugger;
               window.displayName = response.display_name;
               window.displayPic = response.images[0].url;
               window.accessToken = access_token;

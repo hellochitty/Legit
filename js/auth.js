@@ -55,13 +55,18 @@ const authScript = () => {
               'Authorization': 'Bearer ' + access_token
             },
             success: function(response) {
-              sessionStorage.setItem('displayName', response.display_name);
-              sessionStorage.setItem('displayPic', response.images[0].url);
+              // sessionStorage.setItem('displayName', response.display_name);
+              // sessionStorage.setItem('displayPic', response.images[0].url);
               sessionStorage.setItem('accessToken', access_token);
               // userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
               $('#login').hide();
               $('#loggedin').show();
+              $('#user-profile').prepend(
+                `<div id="user-profile">
+                  <h3>Logged in as ${response.display_name}</h3>
+                  <img id="user-pic" width="150" src="${response.images[0].url}" />
+                </div>`);
             }
         });
       } else {

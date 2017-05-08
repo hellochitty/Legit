@@ -115,13 +115,13 @@ const handleStartClick = () => {
   }
 
   console.log('help');
-  $('.body').append(addDifficultySettings());
+  $('.body').append(difficultySettings());
   $('.settings').show('slow');
   $(".difficulty").click(handleDifficultyClick);
 };
 
 
-const addDifficultySettings = () => {
+const difficultySettings = () => {
   return (
     `<div class="settings hidden">
       <h3>difficulty</h3>
@@ -133,7 +133,7 @@ const addDifficultySettings = () => {
 
 const addPlaylistSettings = () => {
   if (userPlaylists){
-    //
+    $('.body').append(__WEBPACK_IMPORTED_MODULE_0__util_js__["d" /* playlistMapper */]("user-playlist",userPlaylists));
   }
 };
 
@@ -141,9 +141,10 @@ const addPlaylistSettings = () => {
 const handleDifficultyClick = (e) => {
   level = e.currentTarget.textContent;
   console.log(level);
-  duration = __WEBPACK_IMPORTED_MODULE_0__util_js__["d" /* durationMapping */](level);
+  duration = __WEBPACK_IMPORTED_MODULE_0__util_js__["e" /* durationMapping */](level);
   console.log(duration);
   $(e.currentTarget).parent().parent().remove();
+  addPlaylistSettings();
 };
 
 
@@ -177,11 +178,16 @@ const divMapper = (className, array) => {
 /* harmony export (immutable) */ __webpack_exports__["c"] = divMapper;
 
 
-const playlistMapper = (className, array) => {
-  return array.map((el) => `<div class=${"'"}${className}${"'"}>${el}</div>`).join("");
+const playlistMapper = (className, playlists) => {
+  let lists =  playlists.map( playlist => {
+    return `<div class=${"'"}${className} img-wrap${"'"} url=${playlist.url}>
+      <img class="playlist-image" src=${playlist.image} />
+      <p class="playlist-description">${playlist.name}</p>
+    </div>`;
+    }).join("");
+  return `<div class="playlists">${lists}</div>`;  
 };
-/* unused harmony export playlistMapper */
-
+/* harmony export (immutable) */ __webpack_exports__["d"] = playlistMapper;
 
 
 
@@ -199,7 +205,7 @@ const durationMapping = lvl => {
       return 0.25;
   }
 };
-/* harmony export (immutable) */ __webpack_exports__["d"] = durationMapping;
+/* harmony export (immutable) */ __webpack_exports__["e"] = durationMapping;
 
 
 const playlistMapping = response => {

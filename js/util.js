@@ -19,10 +19,15 @@ export const divMapper = (className, array) => {
   return array.map((el) => `<div class=${"'"}${className}${"'"}>${el}</div>`).join("");
 };
 
-export const playlistMapper = (className, array) => {
-  return array.map((el) => `<div class=${"'"}${className}${"'"}>${el}</div>`).join("");
+export const playlistMapper = (className, playlists) => {
+  let lists =  playlists.map( playlist => {
+    return `<div class=${"'"}${className} img-wrap${"'"} url=${playlist.url}>
+      <img class="playlist-image" src=${playlist.image} />
+      <p class="playlist-description">${playlist.name}</p>
+    </div>`;
+    }).join("");
+  return `<div class="playlists">${lists}</div>`;  
 };
-
 
 
 export const durationMapping = lvl => {

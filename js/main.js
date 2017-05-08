@@ -40,13 +40,13 @@ const handleStartClick = () => {
   }
 
   console.log('help');
-  $('.body').append(addDifficultySettings());
+  $('.body').append(difficultySettings());
   $('.settings').show('slow');
   $(".difficulty").click(handleDifficultyClick);
 };
 
 
-const addDifficultySettings = () => {
+const difficultySettings = () => {
   return (
     `<div class="settings hidden">
       <h3>difficulty</h3>
@@ -58,7 +58,7 @@ const addDifficultySettings = () => {
 
 const addPlaylistSettings = () => {
   if (userPlaylists){
-    //
+    $('.body').append(Util.playlistMapper("user-playlist",userPlaylists));
   }
 };
 
@@ -69,4 +69,5 @@ const handleDifficultyClick = (e) => {
   duration = Util.durationMapping(level);
   console.log(duration);
   $(e.currentTarget).parent().parent().remove();
+  addPlaylistSettings();
 };

@@ -6,9 +6,10 @@ body *{
   -webkit-font-smoothing: antialiased;
 }
 
-body, h1, h2, h3, h4, h5, button{
-  margin: 0px;
-  padding: 0px;
+body, h1, h2, h3, h4, h5, button, img{
+  margin: 0;
+  padding: 0;
+  border: 0;
   color: inherit;
   font-family: 'Monstserrat', sans-serif;
 }
@@ -28,6 +29,15 @@ body{
   background-attachment: fixed;
 }
 
+footer{
+  position: fixed;
+  left: 25px;
+  bottom: 15px;
+  height: 20px;
+  width: 300px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+}
 
 /*text*/
 h1{
@@ -42,4 +52,45 @@ h4{
 /*important*/
 .hidden{
   display: none;
+}
+
+
+.button{
+  padding: 10px;
+  min-width: 50px;
+  margin: 20px auto;
+  background-color: transparent;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.75);
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+.button:hover {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+/* other */
+#user-pic {
+  width: 150;
+  height: auto;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+.playlists{
+  margin: 10px auto;
+  display: flex;
+  width: 800px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+
+}
+.playlist-image{
+  width: 150px;
+  height: auto;
+}
+
+.user-playlist:hover{
+  cursor: pointer;
 }

@@ -44,10 +44,10 @@ const authScript = () => {
         state = params.state,
         storedState = localStorage.getItem(stateKey);
 
-    // if (access_token && (state == null || state !== storedState)) {
-    //   alert('There was an error during the authentication');
-    // } else {
-    //   localStorage.removeItem(stateKey);
+    if (access_token && (state == null || state !== storedState)) {
+      alert('There was an error during the authentication');
+    } else {
+      localStorage.removeItem(stateKey);
       if (access_token) {
         $.ajax({
             url: 'https://api.spotify.com/v1/me',
@@ -77,7 +77,7 @@ const authScript = () => {
       document.getElementById('login-button').addEventListener('click', function() {
 
         var client_id = 'eb7109a8a1294315ae5b96f61a3c0be2'; // Your client id
-        var redirect_uri = 'https://legit.hahaha.cool/'; // Your redirect uri
+        var redirect_uri = 'http://legit.hahaha.cool/'; // Your redirect uri
 
         if (window.location.origin === 'http://localhost:8080'){
           redirect_uri = 'http://localhost:8080';
@@ -97,6 +97,6 @@ const authScript = () => {
 
         window.location = url;
       }, false);
-    };
-  // };
+    }
+  };
   authScript();

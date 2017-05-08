@@ -183,13 +183,11 @@ const handlePlaylistSelection = () => {
 
 const showQuestion = (question) => {
   var buttonAudio = $(`<div class="button-audio">
-    <button id="play" type="button" name="button">play</button>
+    <div id="play"><i class="fa fa-play fa-3x play-icon" aria-hidden="true"></i></div>
     <audio id="audio" src=${question.url}/>
   </div>`);
   $('.body').append(buttonAudio);
   answers = getOtherAnswers(question);
-  $('.body').append(htmlAnswers(answers));
-  $('.answer').on('click', (e) => handleAnswerClick(e));
   buttonAudio.click(play);
   var audio = document.getElementById("audio");
   $(audio).on("timeupdate", () => {
@@ -215,10 +213,10 @@ const getOtherAnswers = (question) => {
 
 const htmlAnswers = (answrs) => {
   return (
-    `<button class="answer" type="button">${answrs[0]}</button>
-    <button class="answer" type="button">${answrs[1]}</button>
-    <button class="answer" type="button">${answrs[2]}</button>
-    <button class="answer" type="button">${answrs[3]}</button>`
+    `<div class="button answer">${answrs[0]}</div>
+    <div class="button answer">${answrs[1]}</div>
+    <div class="button answer">${answrs[2]}</div>
+    <div class="button answer">${answrs[3]}</div>`
   );
 };
 
@@ -252,6 +250,8 @@ const play = () => {
   var audio = document.getElementById("audio");
   audio.play();
   $( "#play" ).remove();
+  $('.body').append(htmlAnswers(answers));
+  $('.answer').on('click', (e) => handleAnswerClick(e));
 };
 
 

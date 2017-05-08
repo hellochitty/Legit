@@ -45,7 +45,7 @@ const handleStartClick = () => {
     });
   }
   $('.body').append(difficultySettings());
-  $('.settings').show('slow');
+  $('.settings').fadeIn(500);
   $(".difficulty").click(handleDifficultyClick);
 };
 

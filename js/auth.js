@@ -38,6 +38,7 @@ const authScript = () => {
     //     oauthTemplate = Handlebars.compile(oauthSource),
     //     oauthPlaceholder = document.getElementById('oauth');
 
+
     var params = getHashParams();
 
     var access_token = params.access_token,
@@ -61,16 +62,14 @@ const authScript = () => {
               // userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
               $('#login').hide();
-              $('#loggedin').show();
+              $('#loggedin').fadeIn(500);
               $('#user-profile').prepend(
-                `<div id="user-profile">
-                  <h3>Logged in as ${response.display_name}</h3>
-                  <img id="user-pic" width="150" src="${response.images[0].url}" />
-                </div>`);
+                `<img id="user-pic" src="${response.images[0].url}" />
+                <p id="profile-name">${response.display_name}</p>`);
             }
         });
       } else {
-          $('#login').show();
+          $('#login').fadeIn(500);
           $('#loggedin').hide();
       }
 

@@ -39,6 +39,9 @@ footer{
   background: rgba(255, 255, 255, 0.1);
 }
 
+.body{
+  margin: 100px auto;
+}
 /*text*/
 h1{
   font-size: 100px;
@@ -57,7 +60,7 @@ h4{
 
 .button{
   padding: 10px;
-  min-width: 50px;
+  width: 200px;
   margin: 20px auto;
   background-color: transparent;
   font-size: 20px;
@@ -84,12 +87,31 @@ h4{
 }
 
 /* other */
+#user-profile{
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  width: 400px;
+  align-items: center;
+}
+#profile-name{
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
 #user-pic {
-  width: 150;
-  height: auto;
+  width: 50px;
+  height: 50px;
   border: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
+  margin-right: 10px;
 }
+
+#start-button{
+  font-size: 70px;
+  text-transform: uppercase;
+}
+
 .playlists{
   margin: 10px auto;
   display: flex;

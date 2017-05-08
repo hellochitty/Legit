@@ -91,6 +91,20 @@ h4{
   height: auto;
 }
 
-.user-playlist:hover{
+.playlists >*:hover{
   cursor: pointer;
+}
+
+/*progress bar styles*/
+#myProgress {
+    width: 90%;
+    background-color: rgba(102,112,111,0.2);
+    border-radius: 15px;
+    margin: 0 auto;
+}
+#myBar {
+    width: 0%;
+    height: 30px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
 }

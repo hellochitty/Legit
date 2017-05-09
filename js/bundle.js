@@ -217,10 +217,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 $(() => {
 let backgrounds = [
-    'linear-gradient(0deg, #191414, #F0401C)',
-    'linear-gradient(0deg, #191414, #1C51C7)',
-    'linear-gradient(0deg, #191414, #619406)',
-    'linear-gradient(0deg, #191414, #F01F59)'
+    'linear-gradient(0deg, #191414, #F5561D)',
+    'linear-gradient(0deg, #191414, #2575FC)',
+    'linear-gradient(0deg, #191414, #0CD63C)',
+    'linear-gradient(0deg, #191414, #FF215F)'
   ];
   __WEBPACK_IMPORTED_MODULE_0__util_js__["a" /* shuffle */](backgrounds);
   $('body').css('background', backgrounds[0]);

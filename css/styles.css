@@ -126,14 +126,39 @@ h4{
   margin: 10px auto;
   display: flex;
   width: 800px;
-  justify-content: space-around;
+  height: 600px;
+  justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-
+  overflow-y: scroll
 }
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,0.2);
+}
+
 .playlist-image{
   width: 150px;
   height: auto;
+}
+
+.playlist-description {
+    font-size: 11px;
+    word-break: normal;
+    width: 150px;
+    height: 30px;
+    white-space: normal;
+    vertical-align: text-top;
 }
 
 .playlists >*:hover{

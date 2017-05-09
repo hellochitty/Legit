@@ -127,7 +127,7 @@ h4{
   display: flex;
   width: 800px;
   height: 600px;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
   overflow-y: scroll
@@ -181,6 +181,8 @@ h4{
     background-color: rgba(102,112,111,0.2);
     border-radius: 15px;
     margin: 0 auto;
+    position: absolute;
+    top: 0;
 }
 #myBar {
     width: 0%;

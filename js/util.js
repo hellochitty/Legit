@@ -25,7 +25,7 @@ export const divMapper = (className, array) => {
 
 export const playlistMapper = (className, playlists) => {
   return playlists.map( playlist => {
-    return `<div class=${"'"}${className} img-wrap${"'"} url=${playlist.url}>
+    return `<div class=${"'"}${className} img-wrap ${"'"} url=${playlist.url}>
       <img class="playlist-image" src=${playlist.image} />
       <p class="playlist-description">${playlist.name}</p>
     </div>`;

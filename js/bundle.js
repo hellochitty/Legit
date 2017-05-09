@@ -106,7 +106,7 @@ const divMapper = (className, array) => {
 
 const playlistMapper = (className, playlists) => {
   return playlists.map( playlist => {
-    return `<div class=${"'"}${className} img-wrap${"'"} url=${playlist.url}>
+    return `<div class=${"'"}${className} img-wrap ${"'"} url=${playlist.url}>
       <img class="playlist-image" src=${playlist.image} />
       <p class="playlist-description">${playlist.name}</p>
     </div>`;
@@ -276,13 +276,14 @@ const difficultySettings = () => {
 };
 
 const addPlaylistSettings = () => {
-  $('.body').append(`<h3 class="label">Choose a playlist:<h3><div class="playlists"></div>`);
+  $('.body').append(`<h3 class="label">Choose a playlist:<h3><div class="playlists hidden"></div>`);
   if (userPlaylists){
     $('.playlists').append(__WEBPACK_IMPORTED_MODULE_0__util_js__["d" /* playlistMapper */]("user-playlist",userPlaylists));
     $('.user-playlist').click(handleUserPlaylistClick);
   }
   $('.playlists').append(__WEBPACK_IMPORTED_MODULE_0__util_js__["e" /* defaultPlaylists */]());
   $('.default-playlist').click(handleDefaultPlaylistClick);
+  $('.playlists').fadeIn(500);
 };
 
 
@@ -377,10 +378,19 @@ const handleAnswerClick = (e) => {
     showQuestion(currentQuestion);
   }else{
     $('.body').append(`<h3>${numRight}/10 right!</h3>`);
+    $('.body').append(`<div class="button play-again">Play Again</div>`);
+    $('.play-again').click(handlePlayAgain);
     console.log(numRight);
   }
 };
 
+const handlePlayAgain = () => {
+  $('#myProgress').remove();
+  $('h3').remove();
+  $('.play-again').remove();
+  numRight = 0;
+  addPlaylistSettings();
+};
 // $("#play").click(play());
 // $( "#play" ).on("click", () => {
 //   play();

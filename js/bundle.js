@@ -324,7 +324,7 @@ const handlePlaylistSelection = () => {
   $('.body').append(
     `<div id='question'>
       <img class="chosen-playlist" src=${playlistImage} />
-      <div class="audio-answers"> </div>
+      <div class="audio-answers"></div>
     </div>`);
   showQuestion(currentQuestion);
 };
@@ -394,8 +394,8 @@ const handleAnswerClick = (e) => {
       currentQuestion = questions.shift();
       showQuestion(currentQuestion);
     }else{
-      $('.body').append(`<h3>${numRight}/10 right!</h3>`);
-      $('.body').append(`<div class="button play-again">Play Again</div>`);
+      $('.audio-answers').append(`<h3>${numRight}/10 right!</h3>`);
+      $('.audio-answers').append(`<div class="button play-again">Play Again</div>`);
       $('.play-again').click(handlePlayAgain);
 
     }
@@ -406,6 +406,7 @@ const handlePlayAgain = () => {
   $('#myProgress').remove();
   $('h3').remove();
   $('.play-again').remove();
+  $('.chosen-playlist').remove();
   numRight = 0;
   $('.body').append(difficultySettings());
   $('.settings').fadeIn(500);

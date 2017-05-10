@@ -196,7 +196,15 @@ h4{
 #question{
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
+}
+.chosen-playlist{
+  width: 300px;
+  height: 300px;
+}
+.audio-answers{
+  width: 400px;
 }
 /*progress bar styles*/
 #myProgress {

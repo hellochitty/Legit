@@ -322,19 +322,21 @@ const handlePlaylistSelection = () => {
   currentQuestion = questions.shift();
   $('.body').append("<div id='myProgress'><div id='myBar'></div></div>");
   $('.body').append(
-    `<div id='question'>
+    `<div class="hidden" id='question'>
       <img class="chosen-playlist" src=${playlistImage} />
       <div class="audio-answers"></div>
     </div>`);
+  $('#question').fadeIn(500);
   showQuestion(currentQuestion);
 };
 
 const showQuestion = (question) => {
-  var buttonAudio = $(`<div class="button-audio">
+  var buttonAudio = $(`<div class="button-audio hidden">
     <div id="play"><i class="fa fa-play fa-3x play-icon" aria-hidden="true"></i></div>
     <audio id="audio" src=${question.url}/>
   </div>`);
   $('.audio-answers').append(buttonAudio);
+  $('.button-audio').fadeIn(500);
   answers = getOtherAnswers(question);
   buttonAudio.click(play);
   var audio = document.getElementById("audio");
@@ -369,6 +371,7 @@ const htmlAnswers = (answrs) => {
 };
 
 const handleAnswerClick = (e) => {
+  $('.answer').unbind();
   var audio = document.getElementById("audio");
   if (audio){
     audio.pause();
@@ -387,7 +390,6 @@ const handleAnswerClick = (e) => {
       return $(this).text() === e.currentTarget.textContent;
     }).css("text-decoration", "line-through");
   }
-
   setTimeout(()=> {
     $('.answer').remove();
     if (questions.length > 0){

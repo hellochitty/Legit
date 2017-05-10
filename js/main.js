@@ -27,6 +27,7 @@ let questions;
 let currentQuestion;
 let answers;
 let numRight = 0;
+let playlistImage;
 
 const handleStartClick = () => {
   $('#start-button').remove();
@@ -81,6 +82,7 @@ const handleDifficultyClick = (e) => {
 };
 
 const handleUserPlaylistClick = (e) => {
+  playlistImage = e.currentTarget.children[0].src;
   $.ajax({
     url: e.currentTarget.attributes.url.value,
     headers: {
@@ -104,6 +106,11 @@ const handlePlaylistSelection = () => {
   questions = songs.slice(0,10);
   currentQuestion = questions.shift();
   $('.body').append("<div id='myProgress'><div id='myBar'></div></div>");
+  $('.body').append(
+    `<div id='question'>
+      <img class="chosen-playlist" src=${playlistImage} />
+      <div class="audio-answers"> </div>
+    </div>`);
   showQuestion(currentQuestion);
 };
 
@@ -112,7 +119,7 @@ const showQuestion = (question) => {
     <div id="play"><i class="fa fa-play fa-3x play-icon" aria-hidden="true"></i></div>
     <audio id="audio" src=${question.url}/>
   </div>`);
-  $('.body').append(buttonAudio);
+  $('.audio-answers').append(buttonAudio);
   answers = getOtherAnswers(question);
   buttonAudio.click(play);
   var audio = document.getElementById("audio");
@@ -177,7 +184,7 @@ const handleAnswerClick = (e) => {
       $('.play-again').click(handlePlayAgain);
 
     }
-  },2000);
+  },1500);
 };
 
 const handlePlayAgain = () => {
@@ -198,6 +205,6 @@ const play = () => {
   var audio = document.getElementById("audio");
   audio.play();
   $( "#play" ).remove();
-  $('.body').append(htmlAnswers(answers));
+  $('.audio-answers').append(htmlAnswers(answers));
   $('.answer').on('click', (e) => handleAnswerClick(e));
 };

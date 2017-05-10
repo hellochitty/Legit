@@ -152,21 +152,32 @@ const handleAnswerClick = (e) => {
     audio.pause();
     audio.remove();
   }
-  $('.answer').remove();
+
+
+  $('#myBar').animate({ width: "+=10%" }, 500 );
+  $("div").filter(function() {
+    return $(this).text() === currentQuestion.name;
+  }).css("transform", "scale(1.8)");
   if (e.currentTarget.textContent === currentQuestion.name){
     numRight += 1;
-    $('#myBar').animate({ width: "+=10%" }, 500 );
-    console.log(numRight);
+  } else{
+    $("div").filter(function() {
+      return $(this).text() === e.currentTarget.textContent;
+    }).css("text-decoration", "line-through");
   }
-  if (questions.length > 0){
-    currentQuestion = questions.shift();
-    showQuestion(currentQuestion);
-  }else{
-    $('.body').append(`<h3>${numRight}/10 right!</h3>`);
-    $('.body').append(`<div class="button play-again">Play Again</div>`);
-    $('.play-again').click(handlePlayAgain);
-    console.log(numRight);
-  }
+
+  setTimeout(()=> {
+    $('.answer').remove();
+    if (questions.length > 0){
+      currentQuestion = questions.shift();
+      showQuestion(currentQuestion);
+    }else{
+      $('.body').append(`<h3>${numRight}/10 right!</h3>`);
+      $('.body').append(`<div class="button play-again">Play Again</div>`);
+      $('.play-again').click(handlePlayAgain);
+
+    }
+  },2000);
 };
 
 const handlePlayAgain = () => {

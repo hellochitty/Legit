@@ -33,7 +33,6 @@ const handleStartClick = () => {
   $('#start-button').remove();
   //get userPlaylists if user signed in
   if (sessionStorage.accessToken){
-    console.log('non-guest');
     $.ajax({
       url: 'https://api.spotify.com/v1/me/playlists',
       headers: {
@@ -41,8 +40,6 @@ const handleStartClick = () => {
       }
     }).then((response)=>{
       userPlaylists = Util.playlistMapping(response);
-      console.log(userPlaylists);
-      // sessionStorage.setItem('userPlaylists', JSON.stringify(Util.playlistMapping(response)));
     });
   }
   $('.body').append(difficultySettings());
@@ -54,7 +51,7 @@ const handleStartClick = () => {
 const difficultySettings = () => {
   return (
     `<div class="settings hidden">
-      <h3>difficulty</h3>
+      <h3>Difficulty:</h3>
       <div class="settings-difficulty">
         ${Util.divMapper("difficulty button", ["Pedestrian", "Mediocre", "Tough", "Insane", "Masochistic" ])}
       </div>

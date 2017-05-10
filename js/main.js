@@ -174,7 +174,9 @@ const handlePlayAgain = () => {
   $('h3').remove();
   $('.play-again').remove();
   numRight = 0;
-  addPlaylistSettings();
+  $('.body').append(difficultySettings());
+  $('.settings').fadeIn(500);
+  $(".difficulty").click(handleDifficultyClick);
 };
 // $("#play").click(play());
 // $( "#play" ).on("click", () => {

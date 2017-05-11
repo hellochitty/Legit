@@ -209,7 +209,7 @@ h4{
 }
 /*progress bar styles*/
 #myProgress {
-    width: 90%;
+    width: 75%;
     background-color: rgba(102,112,111,0.2);
     border-radius: 15px;
     margin: 0 auto;

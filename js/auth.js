@@ -44,9 +44,9 @@ const authScript = () => {
     var access_token = params.access_token,
         state = params.state,
         storedState = localStorage.getItem(stateKey);
-
-    if (access_token && (state == null || state !== storedState)) {
-      alert('There was an error during the authentication');
+  // if (access_token && (state == null || state !== storedState)) {
+    if (access_token && (state == null)) {
+      alert('There was an error during the authentication, please try again.');
     } else {
       localStorage.removeItem(stateKey);
       if (access_token) {

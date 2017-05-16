@@ -18,7 +18,7 @@ Legit is built using javascript and jquery, with an Express server to handle OAu
 
 #### Play
 ![Play](/assets/play.png)
-#### Answer:
+#### Answer
 ![Answer](/assets/answer.png)
 
 4. At the end of the game, the user is able to see the number they answered correctly, and also return to the playlist selection screen to play a new game.

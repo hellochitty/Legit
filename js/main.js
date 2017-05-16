@@ -2,7 +2,6 @@ import * as Util from './util.js';
 
 $(() => {
 let backgrounds = [
-    'linear-gradient(0deg, #191414, #F5561D)',
     'linear-gradient(0deg, #191414, #2575FC)',
     'linear-gradient(0deg, #191414, #0CD63C)',
     'linear-gradient(0deg, #191414, #FF215F)'
@@ -92,6 +91,7 @@ const handleUserPlaylistClick = (e) => {
 };
 
 const handleDefaultPlaylistClick = (e) => {
+  playlistImage = e.currentTarget.children[0].src;
   songs = Util.playlistToSongsMapping(e.currentTarget.attributes.name.value);
   handlePlaylistSelection();
 };

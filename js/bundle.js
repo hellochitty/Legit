@@ -217,7 +217,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 $(() => {
 let backgrounds = [
-    'linear-gradient(0deg, #191414, #F5561D)',
     'linear-gradient(0deg, #191414, #2575FC)',
     'linear-gradient(0deg, #191414, #0CD63C)',
     'linear-gradient(0deg, #191414, #FF215F)'
@@ -307,6 +306,7 @@ const handleUserPlaylistClick = (e) => {
 };
 
 const handleDefaultPlaylistClick = (e) => {
+  playlistImage = e.currentTarget.children[0].src;
   songs = __WEBPACK_IMPORTED_MODULE_0__util_js__["h" /* playlistToSongsMapping */](e.currentTarget.attributes.name.value);
   handlePlaylistSelection();
 };
